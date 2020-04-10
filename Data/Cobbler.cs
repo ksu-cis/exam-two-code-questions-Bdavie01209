@@ -1,19 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace ExamTwoCodeQuestions.Data
 {
-    public class Cobbler : IOrderItem
+    public class Cobbler : IOrderItem , INotifyPropertyChanged
     {
+        /// <summary>
+        /// backing variable to impliemnt inotifypropertychanged
+        /// </summary>
+        private FruitFilling fruit = 0;
         /// <summary>
         /// The fruit used in the cobbler
         /// </summary>
-        public FruitFilling Fruit { get; set; }
-
+        public FruitFilling Fruit
+        {
+            get
+            {
+                return fruit;
+            }
+            set
+            {
+                if(fruit != value)
+                {
+                    fruit = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Fruit"));
+                }
+            }
+        }
+        /// <summary>
+        /// backing variable to impliemnt inotifypropertychanged
+        /// </summary>
+        private bool withIceCream = true;
         /// <summary>
         /// If the cobbler is served with ice cream
         /// </summary>
-        public bool WithIceCream { get; set; } = true;
+        public bool WithIceCream
+        {
+            get
+            {
+                return withIceCream;
+            }
+            set
+            {
+                if(withIceCream != value)
+                {
+                    withIceCream = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("WithIceCream"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Price"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
+            }
+        }
 
         /// <summary>
         /// Gets the price of the Cobbler
@@ -38,5 +76,7 @@ namespace ExamTwoCodeQuestions.Data
                 else { return new List<string>() { "Hold Ice Cream" }; }
             }
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

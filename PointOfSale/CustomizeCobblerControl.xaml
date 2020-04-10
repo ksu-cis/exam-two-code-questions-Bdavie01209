@@ -7,6 +7,22 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock>Customize Cobbler</TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Button Name="PeachButton" IsEnabled="False" Click="PeachButton_Click">Peach</Button>
+        <Button Name="CherryButton" Grid.Column="1" Click="CherryButton_Click">Cherry</Button>
+        <Button Name="BlueBerryButton" Grid.Row="1" Click="BlueBerryButton_Click">BlueBerry</Button>
+
+        <Button Name="WithIceCream" Grid.Column="1" Grid.Row="2" Click="WithIceCream_Click">With IceCream</Button>
+        <ListBox Grid.Row="2" ItemsSource="{Binding Path=SpecialInstructions}"></ListBox>
+
     </Grid>
 </UserControl>

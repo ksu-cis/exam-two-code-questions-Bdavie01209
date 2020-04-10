@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExamTwoCodeQuestions.Data;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -21,6 +22,47 @@ namespace ExamTwoQuestions.PointOfSale
         public CustomizeCobblerControl()
         {
             InitializeComponent();
+        }
+
+        private void PeachButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is Cobbler c)
+            {
+                c.Fruit = FruitFilling.Peach;
+                PeachButton.IsEnabled = false;
+                CherryButton.IsEnabled = true;
+                BlueBerryButton.IsEnabled = true;
+            }
+        }
+
+        private void CherryButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is Cobbler c)
+            {
+                c.Fruit = FruitFilling.Cherry;
+                PeachButton.IsEnabled = true;
+                CherryButton.IsEnabled = false;
+                BlueBerryButton.IsEnabled = true;
+            }
+        }
+
+        private void BlueBerryButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is Cobbler c)
+            {
+                c.Fruit = FruitFilling.Blueberry;
+                PeachButton.IsEnabled = true;
+                CherryButton.IsEnabled = true;
+                BlueBerryButton.IsEnabled = false;
+            }
+        }
+
+        private void WithIceCream_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is Cobbler c)
+            {
+                c.WithIceCream = !(c.WithIceCream);
+            }
         }
     }
 }
